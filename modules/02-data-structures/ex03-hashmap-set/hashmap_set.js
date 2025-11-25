@@ -16,8 +16,8 @@ class HashMap {
   }
 
   delete(key) {
-    if (this.hashMap[key]) {
-      delete this.hashMap.key;
+    if (this.hashMap[key] !== undefined) {
+      delete this.hashMap[key];
       return true;
     }
     return false;
@@ -59,7 +59,7 @@ class HashSet {
 // const main = () => {
 //   const hashMap = new HashMap();
 
-//   hashMap.set("a", 2);
+//   hashMap.set("a", 1);
 //   console.log(hashMap);
 //   // console.log(hashMap.get("a"));
 //   console.log(hashMap.has("a"));
