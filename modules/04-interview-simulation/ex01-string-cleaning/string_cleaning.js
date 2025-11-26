@@ -2,18 +2,19 @@ const isAlphaNumeric = (c) => {
   return /^[0-9]$/.test(c) || /^[A-Za-z]$/.test(c);
 };
 
+// complexityé o(n)
 export const cleanString = (input) => {
   let cleanedString = [];
-  let space = 0;
+  let hasPendingSpace = false;
   let i = 0;
 
   // On go au debut de la chaine de caractere pour eviter les extra spaces
   while (i < input.length && !isAlphaNumeric(input[i])) i++;
   while (i < input.length) {
     // Si on avait enregistrer un ou plusieurs espace precedemment on en place 1
-    if (space === 1) {
+    if (hasPendingSpace === true) {
       cleanedString.push(" ");
-      space = 0;
+      hasPendingSpace = false;
     }
     // On boucle sur tout les caracteres qui repondent a la regex
     while (i < input.length && isAlphaNumeric(input[i])) {
@@ -26,7 +27,7 @@ export const cleanString = (input) => {
     while (i < input.length && !isAlphaNumeric(input[i])) {
       // si un de ces caractere est un space on met space a trye
       if (input[i] === " ") {
-        space = 1;
+        hasPendingSpace = true;
       }
       // on incremente a la prochaine valeur
       i++;
@@ -37,6 +38,5 @@ export const cleanString = (input) => {
 
 // console.log(cleanString("Hello World"));
 // console.log(cleanString("    Hello,    World!!!"));
-// console.log(cleanString("    Hello,    World!   !"));
-console.log(cleanString("42      is\tgreat   !"));
+// console.log(cleanString("42      is\tgreat   !"));
 // console.log(cleanString("    Hello,    World!   !"));
